@@ -1,11 +1,10 @@
 {
   "name": "smartthings-xbox",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "main": "app.js",
   "dependencies": {
     "express": "^4.13.3",
     "xbox-on": "^0.0.10",
-    "dotenv": "^4.0.0"
   }
 }

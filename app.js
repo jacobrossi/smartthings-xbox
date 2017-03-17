@@ -1,19 +1,16 @@
-require('dotenv').config();
 var express = require('express');
 var Xbox = require('xbox-on');
 var app = express();
 
-if (!process.env.XBOX_IP || !process.env.XBOX_LIVE_DEVICE_ID) {
-  console.error("Invalid command line args. Usage: node app.js -i <IP> -d <Device Live ID>");
+app.get('/xbox', function (req, res) {
+  var ip = req.query.ip;
+  var device = req.query.device;
+  if (!ip || !device) {
+    console.error("Invalid Xbox IP or Device ID - Please specify in SmartThings Settings");
   return;
 }
-
-var xbox = new Xbox(process.env.XBOX_IP, process.env.XBOX_LIVE_DEVICE_ID); 
-
-app.get('/xbox', function (req, res) {
-  console.log('Powering Xbox on...');
-  console.log('Xbox IP:' + req.query.ip);
-  console.log('Xbox Live Device ID:' + req.query.device);
+  var xbox = new Xbox(ip, device); 
+  console.log('Powering Xbox on...\n\tXbox IP:' + ip + '\n\tLive Device ID:' + device);
   xbox.powerOn();
   res.send('ACK');
 })
