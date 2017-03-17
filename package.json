@@ -1,23 +1,11 @@
 {
   "name": "smartthings-xbox",
-  "version": "1.0.0",
-  "description": "SmartThings device to control xbox-on npm package",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jacobrossi/smartthings-xbox.git"
-  },
-  "keywords": [
-    "smartthings",
-    "xbox"
-  ],
-  "author": "JacobRossi",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jacobrossi/smartthings-xbox/issues"
-  },
-  "homepage": "https://github.com/jacobrossi/smartthings-xbox#readme"
+  "version": "0.0.1",
+  "private": true,
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.13.3",
+    "xbox-on": "^0.0.10",
+    "dotenv": "^4.0.0"
+  }
 }
