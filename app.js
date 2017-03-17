@@ -12,6 +12,8 @@ var xbox = new Xbox(process.env.XBOX_IP, process.env.XBOX_LIVE_DEVICE_ID);�
 
 app.get('/xbox', function (req, res) {
   console.log('Powering Xbox on...');
+  console.log('Xbox IP:' + req.query.ip);
+  console.log('Xbox Live Device ID:' + req.query.device);
   xbox.powerOn();
   res.send('ACK');
 })

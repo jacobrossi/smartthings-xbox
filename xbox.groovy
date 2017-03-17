@@ -7,19 +7,18 @@
  */
 
 preferences {
-	input("serverIp", "text", title: "Server IP", description: "The IP of the server running the node module")
-	input("serverPort", "number", title: "Server Port", description: "The port of the smartthings-xbox server (default: 80)")
-    input("xboxIp", "text", title: "Xbox IP", description: "The IP of the Xbox to control")
+	input("serverIp", "text", title: "Bridge IP", description: "The IP of the bridge (server) running the node module")
+	input("serverPort", "number", title: "Bridge Port", description: "The port of the smartthings-xbox bridge (default: 80)")
+	input("xboxIp", "text", title: "Xbox IP", description: "The IP of the Xbox to control")
 	input("xboxDeviceId", "text", title: "Xbox Live Device ID", description: "The Xbox Live Device ID for your Xbox (found in Settings > System)")
 }
  
 
 metadata {
-	definition (name: "Xbox One Controller", namespace: "JacobRossi", 
-    	author: "gtjrossi@gmail.com") {
+	definition (name: "Xbox One Controller", namespace: "JacobRossi", author: "gtjrossi@gmail.com") {
         capability "Actuator"
-		capability "Switch" 
-		capability "Configuration"
+        capability "Switch" 
+        capability "Configuration"
       	}
 
 	tiles {
@@ -35,29 +34,22 @@ metadata {
 
 def parse(String description) {
 	log.debug "Parsing '${description}'"
-    
- 	def map = stringToMap(description)
-    if(!map.body) { return }
-	def localBody = new String(map.body.decodeBase64())
-
-	log.debug "BODY: $localBody"
 }
 
 
 def on() {
     sendEvent(name: "switch", value: "on")
-	log.debug "on"
+    log.debug "on"
     def result = new physicalgraph.device.HubAction(
         method: "GET",
-        path: "/xbox",
+        path: "/xbox?ip=" + xboxIp + "&device=" + xboxDeviceId,
         headers: [
-            HOST: "192.168.1.4:80"
+            HOST: serverIp + ":" + serverPort
         ]
     )
     return result
 }
 
 def off() { 
-	sendEvent(name: "switch", value: "off")
-
+    sendEvent(name: "switch", value: "off")
 }
