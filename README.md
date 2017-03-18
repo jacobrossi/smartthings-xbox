@@ -1,5 +1,5 @@
 # Xbox One SmartThings Device
-Allows powering an Xbox One from SmartThings. For now, this solution requires running a small server on a computer to act as a "bridge" due to limitations in SmartThings. See #1 for more details. Based on https://github.com/arcreative/xbox-on.
+Allows powering an Xbox One from SmartThings. For now, this solution requires running a small server on a computer to act as a "bridge" due to limitations in SmartThings. See [#1](https://github.com/jacobrossi/smartthings-xbox/issues/1) for more details. Based on https://github.com/arcreative/xbox-on.
 
 ## Setup
 ### Configure the bridge
